@@ -86,18 +86,6 @@ a {
   text-transform: uppercase;
 }
 
-/* Change the color of links on hover */
-.tabbar a:hover {
-  background-color: var(--light-grey);
-  color: var(--text-color-dark);
-}
-
-/* Add a color to the active/current link */
-.tabbar a.active {
-  background-color: var(--light-orange);
-  color: var(--text-color);
-}
-
 /* ---------- page styling ---------- */
 .page {
   display: none;
@@ -161,6 +149,12 @@ article button {
   background-color: var(--orange);
   width: 40%;
   border-radius: 5px;
+}
+
+article button:hover {
+  background-color: white;
+  border: 1px solid var(--orange);
+  color: var(--orange);
 }
 
 input {
