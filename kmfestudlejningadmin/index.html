@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>KMFestudlejning Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="shortcut icon" type="image/png" href="img/favicon.png" />
+</head>
+
+<body onhashchange="pageChange()">
+  <!-- pages -->
+
+  <!-- login-->
+  <section id="login" class="page">
+    <p class="login-error"></p>
+    <form class="login_form">
+      <input id="login-mail" type="email" placeholder="E-mail">
+      <input id="login-password" type="password" placeholder="Adgangskode">
+      <button type="button" id="btn-login">Login</button>
+    </form>
+  </section>
+  <!-- home page -->
+  <section id="home" class="page">
+    <header class="topbar">
+      <h2>KMFestudlejning</h2>
+      <a class="right" href="#create">+ TILFØJ</a>
+    </header>
+    <input type="search" class="search-input" placeholder="Søg produkt" onkeyup="search(this.value)">
+    <div id="user-container" class="grid-container"></div>
+  </section>
+
+  <!-- create user page -->
+  <section id="create" class="page">
+    <header class="topbar">
+      <a class="left" href="#home">Tilbage</a>
+      <h2>Tilføj øl</h2>
+    </header>
+    <form>
+      <input type="text" id="name" placeholder="Øl navn" required>
+      <label for="brand">
+        <select id="brand">
+          <option value="" selected disabled>Brand</option>
+          <option value="Royal">Royal</option>
+          <option value="Albani">Albani</option>
+          <option value="Ceres">Ceres</option>
+          <option value="Odense">Odense</option>
+          <option value="Thor">Thor</option>
+          <option value="Fuglsang">Fuglsang</option>
+          <option value="Heineken">Heineken</option>
+          <option value="Edelweiss">Edelweiss</option>
+          <option value="Affligen">Affligen</option>
+          <option value="Murphys">Murphys</option>
+          <option value="Newcastle">Newcastle</option>
+        </select>
+      </label>
+      <input type="text" id="alcohol" placeholder="Alcohol %" required>
+      <input type="text" id="price" placeholder="Pris" required>
+      <input type="text" id="volume" placeholder="Størrelse i Liter" required>
+      <label for="type">
+        <select id="type">
+          <option value="" selected disabled>Type</option>
+          <option value="Pilsner">Pilsner</option>
+          <option value="Stærk pilsner">Stærk pilsner</option>
+          <option value="Ekstra stærk pilsner">Ekstra stærk pilsner</option>
+          <option value="Specialøl">Specialøl</option>
+        </select>
+      </label>
+      <button type="button" name="button" onclick="createUser()">Opret</button>
+    </form>
+  </section>
+
+  <!-- edit user page -->
+  <section id="edit" class="page">
+    <header class="topbar">
+      <a class="left" href="#home">Annuller</a>
+      <h2>Rediger øl</h2>
+      <a class="right" onclick="updateUser('create')">Gem</a>
+    </header>
+    <form>
+      <input type="text" id="name-update" placeholder="Øl navn" required>
+      <label for="brand-update">
+        <select id="brand-update">
+          <option value="" selected disabled>Brand</option>
+          <option value="Royal">Royal</option>
+          <option value="Albani">Albani</option>
+          <option value="Ceres">Ceres</option>
+          <option value="Odense">Odense</option>
+          <option value="Thor">Thor</option>
+          <option value="Fuglsang">Fuglsang</option>
+          <option value="Heineken">Heineken</option>
+          <option value="Edelweiss">Edelweiss</option>
+          <option value="Affligen">Affligen</option>
+          <option value="Murphys">Murphys</option>
+          <option value="Newcastle">Newcastle</option>
+        </select>
+      </label>
+      <input type="text" id="alcohol-update" placeholder="Alcohol %" required>
+      <input type="text" id="price-update" placeholder="Pris" required>
+      <input type="text" id="volume-update" placeholder="Størrelse i Liter" required>
+      <label for="type-update">
+        <select id="type-update">
+          <option value="" selected disabled>Lagerstatus</option>
+          <option value="Pilsner">Pilsner</option>
+          <option value="Stærk pilsner">Stærk pilsner</option>
+          <option value="Ekstra stærk pilsner">Ekstra stærk pilsner</option>
+          <option value="Specialøl">Specialøl</option>
+        </select>
+      </label>
+      <button type="button" name="button" onclick="updateProduct()">Opdater</button>
+    </form>
+  </section>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
+  <!-- Firebase Firestore (database) JS SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-firestore.js"></script>
+  <!-- Single Page Functionality  -->
+  <script src="js/spa.js"></script>
+  <!-- main js file -->
+  <script src="js/main.js" type="module"></script>
+</body>
+
+</html>

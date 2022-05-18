@@ -1,0 +1,232 @@
+/* ---------- root variables ---------- */
+:root {
+  --orange: #f9b965;
+  --light-green: rgb(172, 198, 201);
+  --light-grey: #f1f1f4;
+  --text-color-light: #f1f1f1;
+  --text-color-dark: #333;
+}
+
+/* ---------- general styling ---------- */
+html {
+  color: var(--text-color-dark);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  height: 100%;
+  text-align: center;
+  width: 100%;
+  font-weight: 200;
+}
+
+body {
+  margin: 0;
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: 300;
+  letter-spacing: 3px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--light-green);
+}
+
+/* ---------- topbar styling ---------- */
+.topbar {
+  background-color: var(--orange);
+  color: var(--text-color-light);
+  padding: 13.5px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
+
+.topbar h2 {
+  margin: 0;
+  font-weight: 300;
+}
+
+.topbar a {
+  text-decoration: none;
+  color: var(--text-color-light);
+  position: absolute;
+  top: 20px;
+}
+
+.topbar a.left {
+  left: 20px;
+}
+
+.topbar a.right {
+  right: 20px;
+}
+
+/* ---------- tabbar styling ---------- */
+.tabbar {
+  background-color: var(--orange);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+}
+
+/* Style the links inside the navigation bar */
+.tabbar a {
+  display: inline-block;
+  color: var(--text-color-light);
+  text-align: center;
+  padding: 20px 16px;
+  text-decoration: none;
+  font-size: 0.8em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Change the color of links on hover */
+.tabbar a:hover {
+  background-color: var(--light-grey);
+  color: var(--text-color-dark);
+}
+
+/* Add a color to the active/current link */
+.tabbar a.active {
+  background-color: var(--light-orange);
+  color: var(--text-color-light);
+}
+
+/* ---------- page styling ---------- */
+.page {
+  display: none;
+  /*min heigh is screen heigh minus height of tab and top bar */
+  min-height: calc(100vh - 110px);
+  background: var(--light-grey);
+  animation: fadeIn 0.4s;
+  /* padding equals height of tabbar and topbar */
+  padding: 55px 0;
+}
+
+/* ---------- logo styling ---------- */
+.logo {
+  margin: 2em auto;
+  width: 100%;
+  max-width: 300px;
+}
+
+/* ---------- animations ---------- */
+/* fade in */
+@keyframes fadeIn {
+  from {
+    opacity: 0
+  }
+
+  to {
+    opacity: 1
+  }
+}
+
+/* ---------- input form stryling ---------- */
+form {
+  background-color: var(--light-orange);
+  padding: 2em 1em 2.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form button {
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  padding: 12px 15px;
+  font-size: 1em;
+  border-radius: 0;
+  color: var(--text-color-light);
+  background-color: var(--orange);
+  width: 100%;
+  max-width: 350px;
+}
+
+article button {
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid white;
+  margin-bottom: 1vh;
+  padding: 10px 5px;
+  border-radius: 0;
+  color: white;
+  background-color: var(--orange);
+  width: 40%;
+  border-radius: 5px;
+}
+
+input {
+  margin: 1em auto;
+  width: 100%;
+  max-width: 350px;
+  padding: 12px 15px;
+  box-sizing: border-box;
+  display: block;
+}
+
+.search-input {
+  width: 85%;
+}
+
+#type-update, #type {
+  margin-bottom: 1em;
+}
+
+/* Grid container */
+.grid-container {
+  display: grid;
+  grid-template-columns: 100%;
+  padding: 10px;
+}
+
+@media (min-width: 600px) {
+  .grid-container {
+    grid-template-columns: 50% 50%;
+  }
+}
+
+@media (min-width: 992px) {
+  .grid-container {
+    grid-template-columns: 33.33% 33.33% 33.33%;
+  }
+}
+
+article {
+  text-align: center;
+  margin: 15px;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid var(--orange);
+}
+
+article h3 {
+  font-weight: 200;
+}
+
+
+@media screen and (max-width: 950px) {
+  .topbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.topbar h2 {
+  font-size: 16px;
+}
+
+.topbar a {
+  text-decoration: none;
+  color: var(--text-color-light);
+  top: 0px;
+  position: sticky;
+}
+}
