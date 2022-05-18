@@ -3,7 +3,7 @@
   --orange: #f9b965;
   --light-green: rgb(172, 198, 201);
   --light-grey: #f1f1f4;
-  --text-color-light: #f1f1f1;
+  --text-color: #ffffff;
   --text-color-dark: #333;
 }
 
@@ -35,7 +35,7 @@ a {
 /* ---------- topbar styling ---------- */
 .topbar {
   background-color: var(--orange);
-  color: var(--text-color-light);
+  color: var(--text-color);
   padding: 13.5px;
   position: fixed;
   top: 0;
@@ -51,7 +51,7 @@ a {
 
 .topbar a {
   text-decoration: none;
-  color: var(--text-color-light);
+  color: var(--text-color);
   position: absolute;
   top: 20px;
 }
@@ -77,7 +77,7 @@ a {
 /* Style the links inside the navigation bar */
 .tabbar a {
   display: inline-block;
-  color: var(--text-color-light);
+  color: var(--text-color);
   text-align: center;
   padding: 20px 16px;
   text-decoration: none;
@@ -95,7 +95,7 @@ a {
 /* Add a color to the active/current link */
 .tabbar a.active {
   background-color: var(--light-orange);
-  color: var(--text-color-light);
+  color: var(--text-color);
 }
 
 /* ---------- page styling ---------- */
@@ -120,11 +120,11 @@ a {
 /* fade in */
 @keyframes fadeIn {
   from {
-    opacity: 0
+    opacity: 0;
   }
 
   to {
-    opacity: 1
+    opacity: 1;
   }
 }
 
@@ -144,7 +144,7 @@ form button {
   padding: 12px 15px;
   font-size: 1em;
   border-radius: 0;
-  color: var(--text-color-light);
+  color: var(--text-color);
   background-color: var(--orange);
   width: 100%;
   max-width: 350px;
@@ -176,7 +176,8 @@ input {
   width: 85%;
 }
 
-#type-update, #type {
+#type-update,
+#type {
   margin-bottom: 1em;
 }
 
@@ -211,22 +212,21 @@ article h3 {
   font-weight: 200;
 }
 
-
 @media screen and (max-width: 950px) {
   .topbar {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 
-.topbar h2 {
-  font-size: 16px;
-}
+  .topbar h2 {
+    font-size: 16px;
+  }
 
-.topbar a {
-  text-decoration: none;
-  color: var(--text-color-light);
-  top: 0px;
-  position: sticky;
-}
+  .topbar a {
+    text-decoration: none;
+    color: var(--text-color);
+    top: 0px;
+    position: sticky;
+  }
 }

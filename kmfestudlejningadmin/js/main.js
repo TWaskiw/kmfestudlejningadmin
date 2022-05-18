@@ -2,10 +2,11 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-app.js";
 
 // impoterer funktioner til modulet
-window.selectUser = (id, name, brand, alcohol, price, volume, type) => selectUser(id, name, brand, alcohol, price, volume, type);
+window.selectUser = (id, name, brand, alcohol, price, volume, type) =>
+  selectUser(id, name, brand, alcohol, price, volume, type);
 window.createUser = () => createUser();
 window.updateProduct = () => updateProduct();
-window.deleteUser = () => deleteUser();
+window.deleteUser = (id) => deleteUser(id);
 window.search = (value) => search(value);
 window.login = () => login();
 
@@ -56,7 +57,6 @@ let _produkter = [];
 let _selecetedProduct = "";
 
 onSnapshot(_produkterRef, (snapshot) => {
-
   _produkter = snapshot.docs.map((doc) => {
     const produkt = doc.data();
     produkt.id = doc.id;
@@ -77,8 +77,7 @@ function appendProducts(produkter) {
         <h2>${produkt.name}</h2>
         <p>${produkt.brand}</p>
         <p>${produkt.alcohol}% - ${produkt.price}kr - ${produkt.volume}L</p>
-        <button onclick="selectUser('${produkt.id}','${produkt.name}', '${
-      produkt.brand}', '${produkt.alcohol}', '${produkt.price}', '${produkt.volume}', '${produkt.type}')">Rediger</button>
+        <button onclick="selectUser('${produkt.id}','${produkt.name}', '${produkt.brand}', '${produkt.alcohol}', '${produkt.price}', '${produkt.volume}', '${produkt.type}')">Rediger</button>
         <button onclick="deleteUser('${produkt.id}')">Slet</button>
       </article>
       `;
@@ -158,12 +157,11 @@ function updateProduct() {
 }
 
 // ========== DELETE ==========
-/*
 function deleteUser(id) {
-  const userRef = doc(_produkterRef, id);
-  deleteDoc(userRef);
-} */
-
+  const docRef = doc(_produkterRef, id);
+  deleteDoc(docRef);
+}
+console.log("deleteDoc");
 
 function search(value) {
   value = value.toLowerCase();
@@ -178,31 +176,23 @@ function search(value) {
   appendProducts(filteredProdukter);
 }
 
-
 document.querySelector("#btn-login").onclick = () => login();
-
 
 onAuthStateChanged(_auth, (user) => {
   if (user) {
     navigateTo("home");
-    console.log(user);
-  }
-  else {
+  } else {
     navigateTo("login");
-    console.log(user);
   }
 });
-
 
 function login() {
   const mail = document.querySelector("#login-mail").value;
   const password = document.querySelector("#login-password").value;
 
-
   signInWithEmailAndPassword(_auth, mail, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      console.log(user);
     })
 
     .catch((error) => {
