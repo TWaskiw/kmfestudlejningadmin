@@ -2,11 +2,11 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-app.js";
 
 // impoterer funktioner til modulet
-window.selectUser = (id, name, brand, alcohol, price, volume, type) =>
-  selectUser(id, name, brand, alcohol, price, volume, type);
+window.selectProduct = (id, name, brand, alcohol, price, volume, type) =>
+  selectProduct(id, name, brand, alcohol, price, volume, type);
 window.createUser = () => createUser();
 window.updateProduct = () => updateProduct();
-window.deleteUser = (id) => deleteUser(id);
+window.deleteProduct = (id) => deleteProduct(id);
 window.search = (value) => search(value);
 window.login = () => login();
 
@@ -77,8 +77,8 @@ function appendProducts(produkter) {
         <h2>${produkt.name}</h2>
         <p>${produkt.brand}</p>
         <p>${produkt.alcohol}% - ${produkt.price}kr - ${produkt.volume}L</p>
-        <button onclick="selectUser('${produkt.id}','${produkt.name}', '${produkt.brand}', '${produkt.alcohol}', '${produkt.price}', '${produkt.volume}', '${produkt.type}')">Rediger</button>
-        <button onclick="deleteUser('${produkt.id}')">Slet</button>
+        <button onclick="selectProduct('${produkt.id}','${produkt.name}', '${produkt.brand}', '${produkt.alcohol}', '${produkt.price}', '${produkt.volume}', '${produkt.type}')">Rediger</button>
+        <button onclick="deleteProduct('${produkt.id}')">Slet</button>
       </article>
       `;
   }
@@ -115,7 +115,7 @@ function createUser() {
 
 // ========== UPDATE ==========
 
-function selectUser(id, name, brand, alcohol, price, volume, type) {
+function selectProduct(id, name, brand, alcohol, price, volume, type) {
   _selecetedProduct = id;
   const produkt = _produkter.find((produkt) => produkt.id == _selecetedProduct);
 
@@ -157,7 +157,7 @@ function updateProduct() {
 }
 
 // ========== DELETE ==========
-function deleteUser(id) {
+function deleteProduct(id) {
   const docRef = doc(_produkterRef, id);
   deleteDoc(docRef);
 }
@@ -176,7 +176,7 @@ function search(value) {
   appendProducts(filteredProdukter);
 }
 
-document.querySelector("#btn-login").onclick = () => login();
+document.querySelector("#login-btn").onclick = () => login();
 
 onAuthStateChanged(_auth, (user) => {
   if (user) {
