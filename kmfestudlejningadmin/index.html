@@ -30,7 +30,7 @@
     <div id="user-container" class="grid-container"></div>
   </section>
 
-  <!-- create user page -->
+  <!-- Tilføj øl side -->
   <section id="create" class="page">
     <header class="topbar">
       <a class="left" href="#home">Tilbage</a>
@@ -66,16 +66,15 @@
           <option value="Specialøl">Specialøl</option>
         </select>
       </label>
-      <button type="button" name="button" onclick="createUser()">Opret</button>
+      <button type="button" name="button" onclick="createProduct()">Opret</button>
     </form>
   </section>
 
-  <!-- edit user page -->
+  <!-- Rediger produkt -->
   <section id="edit" class="page">
     <header class="topbar">
       <a class="left" href="#home">Annuller</a>
       <h2>Rediger øl</h2>
-      <a class="right" onclick="updateUser('create')">Gem</a>
     </header>
     <form>
       <input type="text" id="name-update" placeholder="Øl navn" required>
