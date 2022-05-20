@@ -4,7 +4,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.4.1/firebase
 // impoterer funktioner til modulet
 window.selectProduct = (id, name, brand, alcohol, price, volume, type) =>
   selectProduct(id, name, brand, alcohol, price, volume, type);
-window.createUser = () => createUser();
+window.createProduct = () => createProduct();
 window.updateProduct = () => updateProduct();
 window.deleteProduct = (id) => deleteProduct(id);
 window.search = (value) => search(value);
@@ -86,7 +86,7 @@ function appendProducts(produkter) {
 }
 
 // ========== CREATE ==========
-function createUser() {
+function createProduct() {
   let nameInput = document.querySelector("#name");
   let brandInput = document.querySelector("#brand");
   let alcoholInput = document.querySelector("#alcohol");
