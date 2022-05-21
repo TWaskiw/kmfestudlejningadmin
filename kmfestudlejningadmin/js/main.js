@@ -44,7 +44,7 @@ const app = initializeApp(firebaseConfig);
 const _auth = getAuth();
 const _db = getFirestore();
 
-// Reference til arrays i firebase database
+// Firebase array sat til globale _productsRef varibel
 let _productsRef = collection(_db, "produkter");
 
 // Globale variabler
@@ -77,7 +77,7 @@ function appendProducts(produkter) {
       </article>
       `;
   }
-  document.querySelector("#user-container").innerHTML = htmlTemplate;
+  document.querySelector("#product-container").innerHTML = htmlTemplate;
 }
 
 // ========== CREATE ==========
