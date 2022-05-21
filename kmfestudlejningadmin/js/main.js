@@ -28,11 +28,6 @@ import {
   onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-auth.js";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyAVoadKWObjeSokbsPBt0l7cIta6tAvFDs",
   authDomain: "km-festudlejning.firebaseapp.com",
@@ -46,27 +41,27 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const _db = getFirestore();
 const _auth = getAuth();
+const _db = getFirestore();
 
 // Reference til arrays i firebase database
-let _produkterRef = collection(_db, "produkter");
+let _productsRef = collection(_db, "produkter");
 
 // Globale variabler
-let _produkter = [];
+let _products = [];
 let _selecetedProduct = "";
 
-onSnapshot(_produkterRef, (snapshot) => {
-  _produkter = snapshot.docs.map((doc) => {
+onSnapshot(_productsRef, (snapshot) => {
+  _products = snapshot.docs.map((doc) => {
     const produkt = doc.data();
     produkt.id = doc.id;
     return produkt;
   });
 
-  _produkter.sort((a, b) => a.name.localeCompare(b.name));
+  _products.sort((a, b) => a.name.localeCompare(b.name));
 
-  appendProducts(_produkter);
-  console.log(_produkter);
+  appendProducts(_products);
+  console.log(_products);
 });
 
 function appendProducts(produkter) {
@@ -94,7 +89,7 @@ function createProduct() {
   let volumeInput = document.querySelector("#volume");
   let typeInput = document.querySelector("#type");
 
-  let newUser = {
+  let newProduct = {
     name: nameInput.value,
     brand: brandInput.value,
     alcohol: alcoholInput.value,
@@ -103,7 +98,7 @@ function createProduct() {
     type: typeInput.value,
   };
 
-  addDoc(_produkterRef, newUser);
+  addDoc(_productsRef, newProduct);
   navigateTo("home");
 
   nameInput.value = "";
@@ -111,13 +106,14 @@ function createProduct() {
   alcoholInput.value = "";
   priceInput.value = "";
   volumeInput.value = "";
+  typeInput.value = "";
 }
 
 // ========== UPDATE ==========
 
 function selectProduct(id, name, brand, alcohol, price, volume, type) {
   _selecetedProduct = id;
-  const produkt = _produkter.find((produkt) => produkt.id == _selecetedProduct);
+  const produkt = _products.find((produkt) => produkt.id == _selecetedProduct);
 
   let nameInput = document.querySelector("#name-update");
   let brandInput = document.querySelector("#brand-update");
@@ -151,14 +147,14 @@ function updateProduct() {
     volume: volumeInput.value,
     type: typeInput.value,
   };
-  const produktRef = doc(_produkterRef, _selecetedProduct);
+  const produktRef = doc(_productsRef, _selecetedProduct);
   updateDoc(produktRef, userToUpdate);
   navigateTo("home");
 }
 
 // ========== DELETE ==========
 function deleteProduct(id) {
-  const docRef = doc(_produkterRef, id);
+  const docRef = doc(_productsRef, id);
   deleteDoc(docRef);
 }
 console.log("deleteDoc");
@@ -166,7 +162,7 @@ console.log("deleteDoc");
 function search(value) {
   value = value.toLowerCase();
   let filteredProdukter = [];
-  for (const produkt of _produkter) {
+  for (const produkt of _products) {
     console.log(produkt);
     let name = produkt.name.toLowerCase();
     if (name.includes(value)) {
