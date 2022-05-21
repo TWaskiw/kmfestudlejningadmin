@@ -21,7 +21,7 @@ import {
   addDoc,
 } from "https://www.gstatic.com/firebasejs/9.4.1/firebase-firestore.js";
 
-// Import auth + login
+// Login
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -139,7 +139,7 @@ function updateProduct() {
   let volumeInput = document.querySelector("#volume-update");
   let typeInput = document.querySelector("#type-update");
 
-  let userToUpdate = {
+  let productToUpdate = {
     name: nameInput.value,
     brand: brandInput.value,
     alcohol: alcoholInput.value,
@@ -148,7 +148,7 @@ function updateProduct() {
     type: typeInput.value,
   };
   const produktRef = doc(_productsRef, _selecetedProduct);
-  updateDoc(produktRef, userToUpdate);
+  updateDoc(produktRef, productToUpdate);
   navigateTo("home");
 }
 
@@ -157,23 +157,22 @@ function deleteProduct(id) {
   const docRef = doc(_productsRef, id);
   deleteDoc(docRef);
 }
-console.log("deleteDoc");
 
+// ========== SEARCH ==========
 function search(value) {
   value = value.toLowerCase();
-  let filteredProdukter = [];
+  let filterProdukter = [];
   for (const produkt of _products) {
     console.log(produkt);
     let name = produkt.name.toLowerCase();
     if (name.includes(value)) {
-      filteredProdukter.push(produkt);
+      filterProdukter.push(produkt);
     }
   }
-  appendProducts(filteredProdukter);
+  appendProducts(filterProdukter);
 }
 
-document.querySelector("#login-btn").onclick = () => login();
-
+// ========== LOGIN ==========
 onAuthStateChanged(_auth, (user) => {
   if (user) {
     navigateTo("home");
@@ -183,8 +182,8 @@ onAuthStateChanged(_auth, (user) => {
 });
 
 function login() {
-  const mail = document.querySelector("#login-mail").value;
-  const password = document.querySelector("#login-password").value;
+  const mail = document.querySelector("#mail-login").value;
+  const password = document.querySelector("#password-login").value;
 
   signInWithEmailAndPassword(_auth, mail, password)
     .then((userCredential) => {
@@ -192,7 +191,7 @@ function login() {
     })
 
     .catch((error) => {
-      error.message = "Forkerte login-informationer, prøv igen.";
+      error.message = "Login mislykkedes, prøv igen.";
       document.querySelector(".login-error").innerHTML = error.message;
     });
 }
