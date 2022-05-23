@@ -1,6 +1,6 @@
 /* ---------- root variables ---------- */
 :root {
-  --orange: #f9b965;
+  --orange: #edc074;
   --light-green: rgb(172, 198, 201);
   --light-grey: #f1f1f4;
   --text-color: #ffffff;
@@ -175,21 +175,20 @@ input {
   margin-bottom: 1em;
 }
 
-/* Grid container */
-.grid-container {
+.container-grid {
   display: grid;
   grid-template-columns: 100%;
   padding: 10px;
 }
 
 @media (min-width: 600px) {
-  .grid-container {
+  .container-grid {
     grid-template-columns: 50% 50%;
   }
 }
 
 @media (min-width: 992px) {
-  .grid-container {
+  .container-grid {
     grid-template-columns: 33.33% 33.33% 33.33%;
   }
 }
